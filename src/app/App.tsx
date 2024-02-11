@@ -1,10 +1,10 @@
 import TraceCard from '@/widgets/TraceCard';
-// import '@/styles/globals.css';
-
+import data from '@/data/trace.json';
+import img from '@/data/debug.jpg';
 function App() {
   return (
     <>
-      <TraceCard />
+      <TraceCard data={data} img={img} />
     </>
   );
 }
