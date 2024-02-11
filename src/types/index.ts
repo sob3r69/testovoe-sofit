@@ -1,5 +1,6 @@
 export type TraceData = Pick<Trace, 'uuid' | 'timestamp' | 'history' | 'version'>;
 
+// Большой тип, который я просто скопировал из Intelisense своей IDE, поэтому он далеко не идеальный
 export type Trace = {
   uuid: string;
   timestamp: string;

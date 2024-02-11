@@ -6,6 +6,7 @@ type Props = {
   draw: (context: CanvasRenderingContext2D) => void;
 };
 
+// Вынес в отдельный компонент, чтобы избежать проблемы с потенциальным null у canvasRef
 const Canvas = ({ width, height, draw }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 

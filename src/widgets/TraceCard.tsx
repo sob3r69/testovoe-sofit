@@ -8,13 +8,19 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useState } from 'react';
 import Canvas from './Canvas';
-import { drawCircle, drawRect, drawTimeStamp, drawVehicleRect } from '@/lib/utils';
 import TraceInfo from './TraceInfo';
+import { drawDot, drawRect, drawTimeStamp, drawVehicleRect } from '@/lib/utils';
 import { Trace } from '@/types';
 
 type Props = {
   data: Trace;
   img: string;
+};
+
+// Так как эти цифры будут использоваться часто, вынес их в отдельный объект
+const size = {
+  width: 1434,
+  height: 1200,
 };
 
 const TraceCard = ({ data, img }: Props) => {
@@ -23,12 +29,7 @@ const TraceCard = ({ data, img }: Props) => {
   const [display, setDisplay] = useState(false);
   const [selectedChecks, setSelectedChecks] = useState<string[]>([]);
 
-  // Так как эти размеры будут использоваться часто, вынес их в отдельный объект
-  const size = {
-    width: 1434,
-    height: 1200,
-  };
-
+  // Данные для чекбоксов
   const checks = [
     {
       id: 'center',
@@ -48,9 +49,9 @@ const TraceCard = ({ data, img }: Props) => {
     },
   ];
 
+  // Функция отрисовки информации на canvas, находится внутри компонента, так-как использует стейт selectedChecks.
   const draw = (context: CanvasRenderingContext2D) => {
     context.drawImage(image, 0, 0, size.width, size.height);
-
     data.history.tracks[0].points.forEach((point) => {
       point.detection_state.local_timestamp;
       selectedChecks.includes('detect_state_timestamp') &&
@@ -63,7 +64,7 @@ const TraceCard = ({ data, img }: Props) => {
         );
 
       selectedChecks.includes('center') &&
-        drawCircle(
+        drawDot(
           context,
           3,
           'red',

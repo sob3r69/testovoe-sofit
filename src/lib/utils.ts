@@ -1,11 +1,12 @@
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+// Утилка, используемая библиотекой Shacn
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function drawCircle(
+export function drawDot(
   context: CanvasRenderingContext2D,
   thickness: number,
   color: string,
@@ -37,7 +38,7 @@ export function drawRect(
   context.stroke();
 }
 
-// Значения rt и rb судя по всему перепутаны местами
+// Значения rt и rb судя по всему в json'е перепутаны местами
 export function drawVehicleRect(
   context: CanvasRenderingContext2D,
   lt: { x: number; y: number },
